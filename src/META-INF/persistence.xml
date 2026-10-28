@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This is Convention over conversion means, the this persistence.xml needs to be in META-INF -->
+
+<persistence
+	version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+	http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	
+	<persistence-unit name="config">
+	
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<mapping-file>META-INF/orm.xml</mapping-file>
+		<!-- Providing the orm file so that it can build connection -->
+		
+		<properties>
+		
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hiber"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="Vedant 16"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+			
+			<property name="hibernate.hbm2ddl.auto" 
+					  value="update"/> 
+			<!-- this is used to create table, if value="update", then when the app runs again it doesn't creates a new table. 
+				 If value="create", then when the app runs again the table is deleted firstly then created a new table-->
+					  						
+			<property name="hibernate.dialect" 
+					  value="org.hibernate.dialect.MySQL8Dialect"/> 
+			<!-- This is used to set a proper version of MySQL to the Hibernate -->
+			
+			<property name="hibernate.show_sql" value="true"/>
+			<!-- This is used to see the sql query that the hibernate runs. It is shown is the console -->
+		
+		</properties>
+	
+	</persistence-unit>
+	
+</persistence>

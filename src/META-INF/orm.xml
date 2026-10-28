@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This does not follows convention over conversion, because there might be many orm files 
+
+	 Now, internally hibernate uses reflection, so that is can see the name of the private variables of the Entity
+-->
+
+<entity-mappings
+	version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+	http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd">
+	
+	<entity class="com.entity.Employee">
+		
+		<table name="xemployee"></table> 
+		<!-- This is optional, the hibernate will use the class name for the table name if this is not declared
+			 Now the table name is set to xemployee -->
+			 
+		<attributes>
+		
+			<id name="eid">
+				<column name="id"/> 
+				<!-- The column name is optional, if not given then the name of the column will be set to variable name 
+					 This is the primary key, as id tag -->
+			</id>
+			
+			<basic name="ename">
+				<column name="name"/> <!-- This is optional -->
+			</basic>
+			
+			<basic name="eaddress">
+				<column name="address"/> <!-- This is optional -->
+			</basic>
+			
+			<basic name="esalary">
+				<column name="salary"/> <!-- This is optional -->
+			</basic>
+		
+		</attributes>
+		
+	</entity>
+
+</entity-mappings>
