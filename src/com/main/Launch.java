@@ -19,6 +19,9 @@ public class Launch {
 		update(em);
 		delete(em);
 		
+		em.close();
+		emf.close();
+		
 	}
 
 	private static void delete(EntityManager em) {
