@@ -11,8 +11,9 @@
 	<persistence-unit name="config">
 	
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<mapping-file>META-INF/orm.xml</mapping-file>
-		<!-- Providing the orm file so that it can build connection -->
+		<class>com.entity.Employee</class>
+		<!-- So this is the hybrid approach, with annotations as well as persistence.xml
+			 So here we provide the Entity class directly rather than mapping -->
 		
 		<properties>
 		

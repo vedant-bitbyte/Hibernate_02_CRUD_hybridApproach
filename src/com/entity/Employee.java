@@ -1,10 +1,25 @@
 package com.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity //annotation for the Entity class
+@Table(name = "xemployee") // Optional, if we not provide this then the table's name will be same as class name
 public class Employee {
 	
+	@Id // primary key
+	@Column(name = "id") // optional, same reason as the table name
 	private int eid;
+	
+	@Column(name = "name")
 	private String ename;
+	
+	@Column(name = "address")
 	private String eaddress;
+	
+	@Column(name = "salary")
 	private int esalary;
 	
 	public Employee() {
