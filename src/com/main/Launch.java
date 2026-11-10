@@ -1,5 +1,7 @@
 package com.main;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -15,8 +17,8 @@ public class Launch {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("config");
 		EntityManager em = emf.createEntityManager();
 		
-		insert(em);
-//		read(em);
+//		insert(em);
+		read(em);
 //		update(em);
 //		delete(em);
 		
@@ -42,7 +44,27 @@ public class Launch {
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		
+		String sql = "select * from xemployee;";
 		
+		// Here we are getting a List of Object[], which means an Obj for every parameter added into an Array, this is for every row
+		// then, a list<obj[]> is given to us
+//		Query nativeQuery = em.createNativeQuery(sql);
+//		List<Object[]> resultList = nativeQuery.getResultList();
+//		
+//		for (Object[] orr : resultList) {
+//			for (Object o : orr) {
+//				System.out.print(o + " ");
+//			}
+//			System.out.println();
+//		}
+		
+		// now here we pass the Entity Employee, so the data is binded into the Employee obj
+		Query nativeQuery = em.createNativeQuery(sql, Employee.class);
+		List<Employee> resultList = nativeQuery.getResultList();
+		
+		for (Employee emp : resultList) {
+			System.out.println(emp);
+		}
 		
 		transaction.commit();
 		
