@@ -14,6 +14,7 @@ public class Launch {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("config");
 		EntityManager em = emf.createEntityManager();
 		
+		
 		insert(em);
 		read(em);
 		update(em);
