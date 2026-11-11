@@ -17,10 +17,12 @@ public class Launch {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("config");
 		EntityManager em = emf.createEntityManager();
 		
+		// In here we used the native sql query, which means that we write the query with reference to the DB parameters,
+		// not the entity
 //		insert(em);
 		read(em);
-//		update(em);
-//		delete(em);
+		update(em);
+		delete(em);
 		
 		em.close();
 		emf.close();
@@ -29,14 +31,35 @@ public class Launch {
 
 	private static void delete(EntityManager em) {
 		
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
 		
+		String sql = "delete from xemployee where id >= ?";
 		
+		Query nativeQuery = em.createNativeQuery(sql);
+		nativeQuery.setParameter(1, 1237);
+		
+		nativeQuery.executeUpdate();
+		
+		transaction.commit();
+		System.out.println("Bulk data deleted...");
 	}
 
 	private static void update(EntityManager em) {
 		
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
 		
+		String sql = "update xemployee set salary = ? where id >= ?";
 		
+		Query nativeQuery = em.createNativeQuery(sql);
+		nativeQuery.setParameter(1, 9888);
+		nativeQuery.setParameter(2, 1235);
+		
+		nativeQuery.executeUpdate();
+		
+		transaction.commit();
+		System.out.println("Bulk data updates...");
 	}
 
 	private static void read(EntityManager em) {
